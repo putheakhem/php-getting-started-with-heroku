@@ -11,7 +11,7 @@ const SERVERNAME = 'us-cdbr-iron-east-02.cleardb.net';
 
 // create connection
 
-$con = new mysqli(SERVERNAME, USERNAME, PASSWORD);
+$con = new mysqli(SERVERNAME, USERNAME, PASSWORD, DATABASE);
 
 
 
