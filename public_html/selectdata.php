@@ -15,24 +15,15 @@ $con = new mysqli(SERVERNAME, USERNAME, PASSWORD, DATABASE);
 
 
 
-// check database
-
-if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-
 $sql = "SELECT id, firstname, lastname FROM STUDENT";
-
 $result = $con->query($sql);
 
-
-if ($result->num_rows() > 0) {
-    while ($student = $result->fetch_assoc()) {
-        echo "ID: " . $student["id"] . " Name : " . $student["firstname"] . " " . $student["lastname"] . "<br/>";
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
     }
 } else {
-    echo "No Student Record";
+    echo "0 results";
 }
-
-$con->close();
+$conn->close();
