@@ -22,15 +22,17 @@ if (!$con) {
 }
 
 
-$sql = "INSERT INTO STUDENT (firstname, lastname, email)
-VALUES ('John', 'Doe', 'john@example.com')";
+$sql = "SELECT id, firstname, lastname FROM STUDENT";
+
+$result = $con->query($sql);
 
 
-if (mysqli_query($con, $sql)) {
-    echo "New Record created successfully";
+if ($result->num_rows() > 0) {
+    while ($student = $result->fetch_assoc()) {
+        echo "ID: " . $student["id"] . " Name : " . $student["firstname"] . " " . $student["lastname"] . "<br/>";
+    }
 } else {
-    echo "error : " . $sql . "<br>" . mysqli_error($con);
+    echo "No Student Record";
 }
-
 
 $con->close();
